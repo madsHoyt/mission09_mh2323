@@ -1,0 +1,33 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Bookstore";
+    ViewData["Nav"] = "Bookstore";
+    ViewData["Subtitle"] = "What book do you want to read?";
+}
+@model BooksViewModel
+<!--List Books-->
+@foreach (Book b in Model.Books)
+{
+<div class="card card-outline-primary m-1 p-1">
+    <div class="bg-faded p-1">
+        <h4 style="text-transform:uppercase; font-weight:900">
+            @b.Title
+    
+            <span class="badge rounded-pill" style="float:right; background-color:deeppink">
+                <small>@b.Price.ToString("c")</small>
+            </span>
+        </h4>
+    </div>
+    <div class="card-text p-1"><b>Author:</b> @b.Author</div>
+    <div class="card-text p-1"><b>Page Count:</b> @b.PageCount pages</div>
+    <div class="card-text p-1"><b>Category:</b> @b.Category</div>
+    <div class="card-text p-1"><b>Publisher:</b> @b.Publisher</div>
+    <div class="card-text p-1"><b>ISBN:</b> @b.Isbn</div>
+</div>
+}
+<div page-model="@Model.PageInfo" page-action="Index" page-classes-enabled="true"
+          page-class="btn" page-class-normal="btn-outline-dark"
+          page-class-selected="btn-pink" class="btn-group pull-right m-1">
+</div>
