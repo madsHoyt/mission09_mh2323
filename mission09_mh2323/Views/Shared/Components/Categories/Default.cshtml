@@ -1,0 +1,20 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<!--just a list of strings-->
+@model IEnumerable<string>
+
+<!--Home button-->
+<!--Stick-top to keep the categories on the side even when you scroll-->
+<div class="d-grid gap-2 sticky-top">
+    <a asp-controller="Home" asp-action="Index" asp-route-bookCategory="" asp-route-pageNum="1" class="btn btn-outline-secondary">Home</a>
+    <!--Print dynamic categories-->
+    @foreach (string b in Model)
+    {
+        <a asp-controller="Home" asp-action="Index" asp-route-bookCategory="@b" asp-route-pageNum="1"
+           class="btn @(ViewBag.SelectedCategories == b ? "btn-pink" : "btn-outline-secondary")">@b</a>
+    }
+</div>

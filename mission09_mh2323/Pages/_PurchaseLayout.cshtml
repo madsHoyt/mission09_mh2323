@@ -1,10 +1,11 @@
 ﻿<!DOCTYPE html>
+
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>@ViewData["Title"]</title>
+    <title>@ViewBag.Title</title>
     <!--CSS style sheets-->
-    <link href="/lib/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/lib/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/lib/css/StyleSheet.css" rel="stylesheet" />
 </head>
 <body>
@@ -14,14 +15,9 @@
     </div>
     <!--Body-->
     <div class="row m-1 p-1">
-        <!--Categories print on the side-->
-        <div id="categories" class="col-3">
-            <vc:categories></vc:categories>
-        </div>
-        <div class="col-9">
+        <div class="col">
             @RenderBody()
         </div>
     </div>
 </body>
 </html>
-
