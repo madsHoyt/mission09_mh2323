@@ -31,13 +31,17 @@ namespace mission09_mh2323
                 options.UseSqlite(Configuration["ConnectionStrings:BookstoreDBConnection"]);
             });
             services.AddScoped<IBookstoreRepository, EFBookstoreRepository>();
-
+            services.AddScoped<IPurchaseRepository, EFPurchaseRepository>();
             services.AddRazorPages();
           
 
             //Add session capabilities
             services.AddDistributedMemoryCache();
             services.AddSession();
+
+            //Session Basket
+            services.AddScoped<Basket>(x => SessionBasket.GetBasket(x));
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

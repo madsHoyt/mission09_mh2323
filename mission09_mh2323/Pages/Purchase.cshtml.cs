@@ -14,9 +14,10 @@ namespace mission09_mh2323.Pages
         private IBookstoreRepository repo { get; set; }
 
         // constructor requires an IBookstoreRepository
-        public PurchaseModel(IBookstoreRepository temp)
+        public PurchaseModel(IBookstoreRepository temp, Basket b)
         {
             repo = temp;
+            basket = b;
         }
 
         // make an instance of the Basket
@@ -26,7 +27,6 @@ namespace mission09_mh2323.Pages
         public void OnGet(string returnUrl)
         {
             ReturnUrl = returnUrl ?? "/";
-            basket = HttpContext.Session.GetJson<Basket>("basket") ?? new Basket();
         }
         // when clicking the add to cart button, it will actually hit this post before the above get
         public IActionResult OnPost(int bookId, string returnUrl)
@@ -34,16 +34,16 @@ namespace mission09_mh2323.Pages
             // get info for bookid passed in from the add cart buttonbutton
             Book b = repo.Books.FirstOrDefault(x => x.BookId == bookId);
 
-            // if session already exists use it else make a new basket
-            basket = HttpContext.Session.GetJson<Basket>("basket") ?? new Basket();
-
             //Add item to the basket
             basket.AddItem(b, 1);
 
-            // set the JSON file based on the new basket
-            HttpContext.Session.SetJson("basket", basket);
-
             // this will redirect us to the cshtml page associated with this model
+            return RedirectToPage(new { ReturnUrl = returnUrl });
+        }
+
+        public IActionResult OnPostRemove(int bookId, string returnUrl)
+        {
+            basket.RemoveItem(basket.Items.First(x => x.Book.BookId == bookId).Book);
             return RedirectToPage(new { ReturnUrl = returnUrl });
         }
     }
