@@ -15,6 +15,7 @@
             <th>Subtotal</th>
         </tr>
     </thead>
+    <!--Books in Cart-->
     <tbody>
         @foreach (var i in Model.basket.Items)
         {
@@ -42,6 +43,7 @@
     </tfoot>
 </table>
 
+<!--Continue Shopping & Checkout buttons-->
 <div>
     <a class="btn btn-pink" href="@Model.ReturnUrl">Continue Shopping</a>
     <a class="btn btn-pink" asp-controller="Purchase" asp-action="Checkout">Checkout</a>

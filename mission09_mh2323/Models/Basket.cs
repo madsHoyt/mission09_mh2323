@@ -49,6 +49,7 @@ namespace mission09_mh2323.Models
     }
     public class BasketLineItem
     {
+        //Model
         [Key]
         public int LineID { get; set; }
         public Book Book { get; set; }

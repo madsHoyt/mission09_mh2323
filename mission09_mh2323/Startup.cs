@@ -73,7 +73,6 @@ namespace mission09_mh2323
                     name: "type",
                     pattern: "Page{bookCategory}",
                     defaults: new { Controller = "Home", action = "Index", pageNum = 1 });
-                //How to improve the url when you click add to cart?******************** on book summary?
                 endpoints.MapDefaultControllerRoute();
                 endpoints.MapRazorPages();
             });

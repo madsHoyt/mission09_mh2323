@@ -6,11 +6,19 @@
     <!--CSS style sheets-->
     <link href="/lib/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/lib/css/StyleSheet.css" rel="stylesheet" />
+    <link href="~/lib/css/all.min.css" rel="stylesheet" />
 </head>
 <body>
-    <!--Nav bar-->
+    <!--Nav bar & cart icon-->
     <div class="bg-dark text-white p-2">
-        <h1 class="navbar-brand ml-2">Bookstore</h1>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col navbar-brand">Bookstore</div>
+                <div class="col-6 text-end">
+                    <vc:basket-summary />
+                </div>
+            </div>
+        </div>
     </div>
     <!--Body-->
     <div class="row m-1 p-1">
