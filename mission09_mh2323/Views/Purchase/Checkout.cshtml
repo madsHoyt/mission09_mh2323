@@ -1,0 +1,74 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model Purchase
+
+<h2>Check out now</h2>
+<p>Please enter your details, and we will get your books to you!</p>
+
+<!--Model Validation if 0 items-->
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+<!--Shipping information Form-->
+<form method="post" asp-controller="Purchase" asp-action="Checkout">
+    <h4>Ship To</h4>
+    <!--Name-->
+    <div class="form-group">
+        <label asp-for="Name">Name:</label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <!--Address information-->
+    <h4>Address Line 1</h4>
+    <!--Address Line 1-->
+    <div class="form-group">
+        <label asp-for="AddressLine1">Address Line 1:</label>
+        <input asp-for="AddressLine1" class="form-control" />
+        <span asp-validation-for="AddressLine1" class="text-danger"></span>
+    </div>
+    <!--Address Line 2-->
+    <div class="form-group">
+        <label asp-for="AddressLine2">Address Line 2:</label>
+        <input asp-for="AddressLine2" class="form-control" />
+        <span asp-validation-for="AddressLine2" class="text-danger"></span>
+    </div>
+    <!--Address Line 3-->
+    <div class="form-group">
+        <label asp-for="AddressLine3">Address Line 3:</label>
+        <input asp-for="AddressLine3" class="form-control" />
+        <span asp-validation-for="AddressLine3" class="text-danger"></span>
+    </div>
+    <!--City-->
+    <div class="form-group">
+        <label asp-for="City">City:</label>
+        <input asp-for="City" class="form-control" />
+        <span asp-validation-for="City" class="text-danger"></span>
+    </div>
+    <!--State-->
+    <div class="form-group">
+        <label asp-for="State">State:</label>
+        <input asp-for="State" class="form-control" />
+        <span asp-validation-for="State" class="text-danger"></span>
+    </div>
+    <!--Zip-->
+    <div class="form-group">
+        <label asp-for="Zip">Zip:</label>
+        <input asp-for="Zip" class="form-control" />
+        <span asp-validation-for="Zip" class="text-danger"></span>
+    </div>
+    <!--Country-->
+    <div class="form-group">
+        <label asp-for="Country">Country:</label>
+        <input asp-for="Country" class="form-control" />
+        <span asp-validation-for="Country" class="text-danger"></span>
+    </div>
+    <br />
+    <!--Checkout Button-->
+    <center>
+        <div>
+            <input class="btn btn-pink" type="submit" value="Complete Checkout"/>
+        </div>
+    </center>
+</form>

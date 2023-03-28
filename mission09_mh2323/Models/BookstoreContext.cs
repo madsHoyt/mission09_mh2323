@@ -13,13 +13,12 @@ namespace mission09_mh2323.Models
         public BookstoreContext()
         {
         }
-
         public BookstoreContext(DbContextOptions<BookstoreContext> options)
             : base(options)
         {
         }
-
         public DbSet<Book> Books { get; set; }
+        public DbSet<Purchase> Purchases { get; set; }
 
     }
 }

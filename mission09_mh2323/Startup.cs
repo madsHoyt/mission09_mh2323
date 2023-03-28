@@ -15,7 +15,6 @@ namespace mission09_mh2323
 {
     public class Startup
     {
-
         public IConfiguration Configuration { get; set; }
         public Startup(IConfiguration temp)
         {
@@ -32,6 +31,17 @@ namespace mission09_mh2323
                 options.UseSqlite(Configuration["ConnectionStrings:BookstoreDBConnection"]);
             });
             services.AddScoped<IBookstoreRepository, EFBookstoreRepository>();
+            services.AddScoped<IPurchaseRepository, EFPurchaseRepository>();
+            services.AddRazorPages();
+          
+
+            //Add session capabilities
+            services.AddDistributedMemoryCache();
+            services.AddSession();
+
+            //Session Basket
+            services.AddScoped<Basket>(x => SessionBasket.GetBasket(x));
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,12 +53,28 @@ namespace mission09_mh2323
             }
 
             app.UseStaticFiles();
-
+            //use session
+            app.UseSession();
             app.UseRouting();
 
+            //Endpoints
             app.UseEndpoints(endpoints =>
             {
+                //configure endpoint route 
+                endpoints.MapControllerRoute(
+                    name: "categorypage",
+                    pattern: "{bookCategory}/Page{pageNum}",
+                    defaults: new { Controller = "Home", action = "Index" });
+                endpoints.MapControllerRoute(
+                    name: "Paging",
+                    pattern: "Page{pageNum}",
+                    defaults: new { Controller = "Home", action = "Index", pageNum = 1 });
+                endpoints.MapControllerRoute(
+                    name: "type",
+                    pattern: "Page{bookCategory}",
+                    defaults: new { Controller = "Home", action = "Index", pageNum = 1 });
                 endpoints.MapDefaultControllerRoute();
+                endpoints.MapRazorPages();
             });
         }
     }
